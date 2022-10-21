@@ -32,7 +32,7 @@ public class UserStatistics {
     }
 
     public void setCarBrand(String carBrand) {
-        carBrand = carBrand;
+        this.carBrand = carBrand;
     }
 
     public List<UserScore> getUserScores() {
