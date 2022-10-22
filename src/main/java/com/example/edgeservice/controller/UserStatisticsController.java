@@ -71,9 +71,18 @@ public class UserStatisticsController {
     }
 
     // Nog een vierde GET toevoegen
+    @GetMapping("/statistics/cars")
+    public List<Car> getCarBrands(){
+        List<Car> cars = new ArrayList();
+        ResponseEntity<List<Car>> responseEntityCars =
+                restTemplate.exchange("http://" + carServiceBaseUrl + "/cars",
+                        HttpMethod.GET, null, new ParameterizedTypeReference<List<Car>>() {}
+                );
+        cars = responseEntityCars.getBody();
+        return cars;
+    }
 
 
-    // POST geeft nog een null terug bij carbrand
     @PostMapping("/statistics")
     public UserStatistics addStatistics(@RequestParam String userName, @RequestParam String carBrand, @RequestParam Integer scoreNumber){
         Scan scan =
