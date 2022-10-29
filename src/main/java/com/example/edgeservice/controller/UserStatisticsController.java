@@ -66,8 +66,8 @@ public class UserStatisticsController {
                 restTemplate.getForObject(http + carServiceBaseUrl + "/cars/{carBrand}",
                         Car.class, carBrand);
         Scan scan =
-                restTemplate.getForObject(http + scanServiceBaseUrl + "/scans/user/" + userName + "/car/" + carBrand,
-                        Scan.class);
+                restTemplate.getForObject(http + scanServiceBaseUrl + "/scans/user/{userName}/car/{carBrand}",
+                        Scan.class, userName, carBrand);
         return new UserStatistics(car, scan);
     }
 
@@ -97,8 +97,8 @@ public class UserStatisticsController {
     @PutMapping("/statistics")
     public UserStatistics updateStatistics(@RequestParam String userName, @RequestParam String carBrand, @RequestParam Integer scoreNumber){
         Scan scan =
-                restTemplate.getForObject(http + scanServiceBaseUrl + "/scans/user/" + userName + "/car/" + carBrand,
-                        Scan.class);
+                restTemplate.getForObject(http + scanServiceBaseUrl + "/scans/user/{userName}/car/{carBrand}",
+                        Scan.class, userName, carBrand);
         if (scan == null) {
             // Return an empty object
             return new UserStatistics();
@@ -118,7 +118,7 @@ public class UserStatisticsController {
     @DeleteMapping("/statistics/{userName}/car/{carBrand}")
     public <T> ResponseEntity<T> deleteStatistics(@PathVariable String userName, @PathVariable String carBrand){
 
-        restTemplate.delete(http + scanServiceBaseUrl + "/scans/user/" + userName + "/car/" + carBrand);
+        restTemplate.delete(http + scanServiceBaseUrl + "/scans/user/{userName}/car/{CarBrand}", userName, carBrand);
 
         return ResponseEntity.ok().build();
     }
