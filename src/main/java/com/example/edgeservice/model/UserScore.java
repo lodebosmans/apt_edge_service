@@ -13,15 +13,15 @@ public class UserScore {
         return userName;
     }
 
-    public void setUserName(Integer userId) {
-        this.userName = userName;
-    }
+//    public void setUserName(String userName) {
+//        this.userName = userName;
+//    }
 
     public Integer getScoreNumber() {
         return scoreNumber;
     }
 
-    public void setScoreNumber(Integer scoreNumber) {
-        this.scoreNumber = scoreNumber;
-    }
+//    public void setScoreNumber(Integer scoreNumber) {
+//        this.scoreNumber = scoreNumber;
+//    }
 }

@@ -13,6 +13,12 @@ public class Car {
     public Car() {
     }
 
+    public Car(String carBrand, Integer maxSpeed, Integer numberOfSeats) {
+        this.carBrand = carBrand;
+        this.maxSpeed = maxSpeed;
+        this.numberOfSeats = numberOfSeats;
+    }
+
     public String getCarBrand() {
         return carBrand;
     }

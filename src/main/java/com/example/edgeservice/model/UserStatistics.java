@@ -8,6 +8,9 @@ public class UserStatistics {
     private String carBrand;
     private List<UserScore> userScores;
 
+    public UserStatistics() {
+    }
+
     public UserStatistics(Car car, List<Scan> scans) {
         setCarBrand(car.getCarBrand());
 //        setISBN(book.getISBN());
