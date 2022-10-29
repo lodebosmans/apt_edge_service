@@ -28,7 +28,7 @@ public class UserStatisticsController {
     @Value("${carservice.baseurl}")
     private String carServiceBaseUrl;
 
-    private final String http = "http://";
+    private static final String http = "http://";
 
     @GetMapping("/statistics/user/{userName}")
     public List<UserStatistics> getStatisticsByUserName(@PathVariable String userName){
