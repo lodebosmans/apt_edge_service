@@ -28,7 +28,7 @@ public class UserStatisticsController {
     @Value("${carservice.baseurl}")
     private String carServiceBaseUrl;
 
-    private static final String http = "http://";
+    private static String http = "http://";
 
     @GetMapping("/statistics/user/{userName}")
     public List<UserStatistics> getStatisticsByUserName(@PathVariable String userName){
@@ -116,7 +116,7 @@ public class UserStatisticsController {
     }
 
     @DeleteMapping("/statistics/{userName}/car/{carBrand}")
-    public ResponseEntity deleteStatistics(@PathVariable String userName, @PathVariable String carBrand){
+    public <T> ResponseEntity<T> deleteStatistics(@PathVariable String userName, @PathVariable String carBrand){
 
         restTemplate.delete(http + scanServiceBaseUrl + "/scans/user/" + userName + "/car/" + carBrand);
 

@@ -2,7 +2,6 @@ package com.example.edgeservice.model;
 
 public class Scan {
 
-//    private String id;
     private String userName;
     private String carBrand;
     private Integer scoreNumber;

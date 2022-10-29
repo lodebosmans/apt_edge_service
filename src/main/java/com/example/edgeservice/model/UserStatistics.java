@@ -14,10 +14,10 @@ public class UserStatistics {
     public UserStatistics(Car car, List<Scan> scans) {
         setCarBrand(car.getCarBrand());
         userScores = new ArrayList<>();
-        scans.forEach(scan -> {
+        scans.forEach(scan ->
             userScores.add(new UserScore(scan.getUserName(),
-                    scan.getScoreNumber()));
-        });
+                    scan.getScoreNumber()))
+        );
         setUserScores(userScores);
     }
 

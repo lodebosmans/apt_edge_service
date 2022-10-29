@@ -37,7 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class UserStatisticsControllerUnitTests {
+class UserStatisticsControllerUnitTests {
 
     @Value("${scanservice.baseurl}")
     private String scanServiceBaseUrl;
@@ -66,126 +66,18 @@ public class UserStatisticsControllerUnitTests {
     private List<Scan> allScansForCar1 = Arrays.asList(scanUser1Car1,scanUser2Car1);
     private List<Scan> allScansForCar2 = Arrays.asList(scanUser1Car2);
 
-//    private UserScore userScoreUser1Car1 = new UserScore("Lode",5);
-//    private UserScore userScoreUser1Car2 = new UserScore("Lode",3);
-//    private UserScore userScoreUser2Car1 = new UserScore("Johnny",4);
-//    private List<UserScore> allUserScoresCar1 = Arrays.asList(userScoreUser1Car1, userScoreUser2Car1);
-
     private UserStatistics userStatisticsCar1 = new UserStatistics(car1, allScansForCar1);
 
 
     @BeforeEach
     public void initializeMockserver() throws JsonProcessingException, URISyntaxException {
         mockServer = MockRestServiceServer.createServer(restTemplate);
-
-
-//        // Eerste test
-//
-//        // GET all scans from User 1
-//        mockServer.expect(ExpectedCount.once(),
-//                requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/Lode")))
-//                .andExpect(method(HttpMethod.GET))
-//                .andRespond(withStatus(HttpStatus.OK)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .body(mapper.writeValueAsString(allScansFromUser1))
-//                );
-//
-//        // GET Car 1 info
-//        mockServer.expect(ExpectedCount.once(),
-//                requestTo(new URI("http://" + carServiceBaseUrl + "/cars/Audi")))
-//                .andExpect(method(HttpMethod.GET))
-//                .andRespond(withStatus(HttpStatus.OK)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .body(mapper.writeValueAsString(car1))
-//                );
-//
-//        // GET Car 2 info
-//        mockServer.expect(ExpectedCount.once(),
-//                requestTo(new URI("http://" + carServiceBaseUrl + "/cars/Tesla")))
-//                .andExpect(method(HttpMethod.GET))
-//                .andRespond(withStatus(HttpStatus.OK)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .body(mapper.writeValueAsString(car2))
-//                );
-//
-//
-//        // Tweede test
-//
-//        // GET all scans for Car 1
-//        mockServer.expect(ExpectedCount.once(),
-//                requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/Audi")))
-//                .andExpect(method(HttpMethod.GET))
-//                .andRespond(withStatus(HttpStatus.OK)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .body(mapper.writeValueAsString(allScansForCar1))
-//                );
-//
-//        // GET all scans for Car 2
-//        mockServer.expect(ExpectedCount.once(),
-//                requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/Tesla")))
-//                .andExpect(method(HttpMethod.GET))
-//                .andRespond(withStatus(HttpStatus.OK)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .body(mapper.writeValueAsString(allScansForCar2))
-//                );
-//
-//        // GET Cars
-//        mockServer.expect(ExpectedCount.once(),
-//                requestTo(new URI("http://" + carServiceBaseUrl + "/cars")))
-//                .andExpect(method(HttpMethod.GET))
-//                .andRespond(withStatus(HttpStatus.OK)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .body(mapper.writeValueAsString(allCars))
-//                );
-//
-
-
-
-
-
-
-
-
-//        // GET scan from User 1 of Car 1
-//        mockServer.expect(ExpectedCount.once(),
-//                requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/1/car/ISBN1")))
-//                .andExpect(method(HttpMethod.GET))
-//                .andRespond(withStatus(HttpStatus.OK)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .body(mapper.writeValueAsString(scanUser1Car1))
-//                );
-
-
-//        // POST scan for Car 1 from User 3
-//        mockServer.expect(ExpectedCount.once(),
-//                requestTo(new URI("http://" + scanServiceBaseUrl + "/scans")))
-//                .andExpect(method(HttpMethod.POST))
-//                .andRespond(withStatus(HttpStatus.OK)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .body(mapper.writeValueAsString(scanUser3Car1))
-//                );
-
-//        // PUT scan from User 1 for Car 1 with new score 5
-//        mockServer.expect(ExpectedCount.once(),
-//                requestTo(new URI("http://" + scanServiceBaseUrl + "/scans")))
-//                .andExpect(method(HttpMethod.PUT))
-//                .andRespond(withStatus(HttpStatus.OK)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .body(mapper.writeValueAsString(updatedScanUser1Car1))
-//                );
-
-//        // DELETE scan from User 999 of Car with ISBN9 as ISBN
-//        mockServer.expect(ExpectedCount.once(),
-//                requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/Lode/car/Volvo")))
-//                .andExpect(method(HttpMethod.DELETE))
-//                .andRespond(withStatus(HttpStatus.OK)
-//                );
     }
 
 
     // Eerste test
     @Test
-    public void whenGetStatisticsByUserName_thenReturnScansJson() throws Exception {
+    void whenGetStatisticsByUserName_thenReturnScansJson() throws Exception {
 
         // GET all scans from User 1
         mockServer.expect(ExpectedCount.once(),
@@ -229,7 +121,7 @@ public class UserStatisticsControllerUnitTests {
 
     // Tweede test
     @Test
-    public void whenGetStatisticsByCarBrand_thenReturnStatisticsJson() throws Exception {
+    void whenGetStatisticsByCarBrand_thenReturnStatisticsJson() throws Exception {
 
         // GET Car 1 info
         mockServer.expect(ExpectedCount.once(),
@@ -263,7 +155,7 @@ public class UserStatisticsControllerUnitTests {
 
     // Derde test
     @Test
-    public void whenGetUserStatisticsForUserAndCarBrand_thenReturnUserStatisticsForUserAndCarBrandJson() throws Exception {
+    void whenGetUserStatisticsForUserAndCarBrand_thenReturnUserStatisticsForUserAndCarBrandJson() throws Exception {
 
         // GET Car 1 info
         mockServer.expect(ExpectedCount.once(),
@@ -295,7 +187,7 @@ public class UserStatisticsControllerUnitTests {
 
     // Vierde test
     @Test
-    public void whenGetAllCars_thenReturnAllCarsJson() throws Exception {
+    void whenGetAllCars_thenReturnAllCarsJson() throws Exception {
 
         // GET Car 1 info
         mockServer.expect(ExpectedCount.once(),
@@ -323,7 +215,7 @@ public class UserStatisticsControllerUnitTests {
 
     // Vijfde test
     @Test
-    public void whenPostStatitics_thenReturnStatisticsJson() throws Exception {
+    void whenPostStatitics_thenReturnStatisticsJson() throws Exception {
 
         Scan scanUser3Car1 = new Scan("Els", "Audi", 2);
 
@@ -361,7 +253,7 @@ public class UserStatisticsControllerUnitTests {
 
     // Zesde test
     @Test
-    public void whenUpdateStatistics_thenReturnStatistiscsJson() throws Exception {
+    void whenUpdateStatistics_thenReturnStatistiscsJson() throws Exception {
 
         Scan updatedScanUser1Car1 = new Scan("Lode", "Audi", 1);
 
@@ -407,7 +299,7 @@ public class UserStatisticsControllerUnitTests {
 
     // Zesde test BIS with empty put
     @Test
-    public void whenUpdateStatisticsOfNonExisting_thenReturnEmptyStatistiscsJson() throws Exception {
+    void whenUpdateStatisticsOfNonExisting_thenReturnEmptyStatistiscsJson() throws Exception {
 
         Scan updatedScanUser1Car1 = new Scan("Lode", "Volvo", 1);
 
@@ -436,7 +328,7 @@ public class UserStatisticsControllerUnitTests {
 
     // Zevende test
     @Test
-    public void whenDeleteRanking_thenReturnStatusOk() throws Exception {
+    void whenDeleteRanking_thenReturnStatusOk() throws Exception {
 
         // DELETE scan from User 999 of Car with ISBN9 as ISBN
         mockServer.expect(ExpectedCount.once(),
