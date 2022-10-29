@@ -78,8 +78,7 @@ public class UserStatisticsController {
                 restTemplate.exchange(http + carServiceBaseUrl + "/cars",
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<Car>>() {}
                 );
-        cars = responseEntityCars.getBody();
-        return cars;
+        return responseEntityCars.getBody();
     }
 
 
