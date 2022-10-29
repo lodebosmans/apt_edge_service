@@ -2,7 +2,7 @@ package com.example.edgeservice.model;
 
 public class Car {
 
-    private int id;
+//    private int id;
 
     private String carBrand;
 

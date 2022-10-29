@@ -13,7 +13,6 @@ public class UserStatistics {
 
     public UserStatistics(Car car, List<Scan> scans) {
         setCarBrand(car.getCarBrand());
-//        setISBN(book.getISBN());
         userScores = new ArrayList<>();
         scans.forEach(scan -> {
             userScores.add(new UserScore(scan.getUserName(),
@@ -24,7 +23,6 @@ public class UserStatistics {
 
     public UserStatistics(Car car, Scan scan) {
         setCarBrand(car.getCarBrand());
-//        setISBN(book.getISBN());
         userScores = new ArrayList<>();
         userScores.add(new UserScore(scan.getUserName(), scan.getScoreNumber()));
         setUserScores(userScores);

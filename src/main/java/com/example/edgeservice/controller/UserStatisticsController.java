@@ -15,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @RestController
 public class UserStatisticsController {
 
@@ -27,18 +28,20 @@ public class UserStatisticsController {
     @Value("${carservice.baseurl}")
     private String carServiceBaseUrl;
 
+    private static final String http = "http://";
+
     @GetMapping("/statistics/user/{userName}")
     public List<UserStatistics> getStatisticsByUserName(@PathVariable String userName){
         List<UserStatistics> returnList= new ArrayList();
         ResponseEntity<List<Scan>> responseEntityScans =
-                restTemplate.exchange("http://" + scanServiceBaseUrl + "/scans/user/{userName}",
+                restTemplate.exchange(http + scanServiceBaseUrl + "/scans/user/{userName}",
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<Scan>>() {
                         }, userName);
         List<Scan> scans = responseEntityScans.getBody();
         for (Scan scan:
                 scans) {
             Car car =
-                    restTemplate.getForObject("http://" + carServiceBaseUrl + "/cars/{car}",
+                    restTemplate.getForObject(http + carServiceBaseUrl + "/cars/{car}",
                             Car.class, scan.getCarBrand());
             returnList.add(new UserStatistics(car, scan));
         }
@@ -48,10 +51,10 @@ public class UserStatisticsController {
     @GetMapping("/statistics/car/{carBrand}")
     public UserStatistics getStatisticsByCarBrand(@PathVariable String carBrand){
         Car car =
-                restTemplate.getForObject("http://" + carServiceBaseUrl + "/cars/{carBrand}",
+                restTemplate.getForObject(http + carServiceBaseUrl + "/cars/{carBrand}",
                         Car.class, carBrand);
         ResponseEntity<List<Scan>> responseEntityScans =
-                restTemplate.exchange("http://" + scanServiceBaseUrl + "/scans/{car}",
+                restTemplate.exchange(http + scanServiceBaseUrl + "/scans/{car}",
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<Scan>>() {
                         }, carBrand);
         return new UserStatistics(car,responseEntityScans.getBody());
@@ -60,10 +63,10 @@ public class UserStatisticsController {
     @GetMapping("/statistics/{userName}/car/{carBrand}")
     public UserStatistics getStatisticsByUserNameAndCarBrand(@PathVariable String userName, @PathVariable String carBrand){
         Car car =
-                restTemplate.getForObject("http://" + carServiceBaseUrl + "/cars/{carBrand}",
+                restTemplate.getForObject(http + carServiceBaseUrl + "/cars/{carBrand}",
                         Car.class, carBrand);
         Scan scan =
-                restTemplate.getForObject("http://" + scanServiceBaseUrl + "/scans/user/" + userName + "/car/" + carBrand,
+                restTemplate.getForObject(http + scanServiceBaseUrl + "/scans/user/" + userName + "/car/" + carBrand,
                         Scan.class);
         return new UserStatistics(car, scan);
     }
@@ -72,7 +75,7 @@ public class UserStatisticsController {
     public List<Car> getCarBrands(){
         List<Car> cars = new ArrayList();
         ResponseEntity<List<Car>> responseEntityCars =
-                restTemplate.exchange("http://" + carServiceBaseUrl + "/cars",
+                restTemplate.exchange(http + carServiceBaseUrl + "/cars",
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<Car>>() {}
                 );
         cars = responseEntityCars.getBody();
@@ -83,10 +86,10 @@ public class UserStatisticsController {
     @PostMapping("/statistics")
     public UserStatistics addStatistics(@RequestParam String userName, @RequestParam String carBrand, @RequestParam Integer scoreNumber){
         Scan scan =
-                restTemplate.postForObject("http://" + scanServiceBaseUrl + "/scans",
+                restTemplate.postForObject(http + scanServiceBaseUrl + "/scans",
                         new Scan(userName,carBrand,scoreNumber),Scan.class);
         Car car =
-                restTemplate.getForObject("http://" + carServiceBaseUrl + "/cars/{carBrand}",
+                restTemplate.getForObject(http + carServiceBaseUrl + "/cars/{carBrand}",
                         Car.class,carBrand);
         return new UserStatistics(car, scan);
     }
@@ -94,7 +97,7 @@ public class UserStatisticsController {
     @PutMapping("/statistics")
     public UserStatistics updateStatistics(@RequestParam String userName, @RequestParam String carBrand, @RequestParam Integer scoreNumber){
         Scan scan =
-                restTemplate.getForObject("http://" + scanServiceBaseUrl + "/scans/user/" + userName + "/car/" + carBrand,
+                restTemplate.getForObject(http + scanServiceBaseUrl + "/scans/user/" + userName + "/car/" + carBrand,
                         Scan.class);
         if (scan == null) {
             // Return an empty object
@@ -102,11 +105,11 @@ public class UserStatisticsController {
         } else {
             scan.setScoreNumber(scoreNumber);
             ResponseEntity<Scan> responseEntityReview =
-                    restTemplate.exchange("http://" + scanServiceBaseUrl + "/scans",
+                    restTemplate.exchange(http + scanServiceBaseUrl + "/scans",
                             HttpMethod.PUT, new HttpEntity<>(scan), Scan.class);
             Scan retrievedScan = responseEntityReview.getBody();
             Car car =
-                    restTemplate.getForObject("http://" + carServiceBaseUrl + "/cars/{carBrand}",
+                    restTemplate.getForObject(http + carServiceBaseUrl + "/cars/{carBrand}",
                             Car.class, carBrand);
             return new UserStatistics(car, retrievedScan);
         }
@@ -115,7 +118,7 @@ public class UserStatisticsController {
     @DeleteMapping("/statistics/{userName}/car/{carBrand}")
     public ResponseEntity deleteStatistics(@PathVariable String userName, @PathVariable String carBrand){
 
-        restTemplate.delete("http://" + scanServiceBaseUrl + "/scans/user/" + userName + "/car/" + carBrand);
+        restTemplate.delete(http + scanServiceBaseUrl + "/scans/user/" + userName + "/car/" + carBrand);
 
         return ResponseEntity.ok().build();
     }
