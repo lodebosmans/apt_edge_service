@@ -28,11 +28,11 @@ public class UserStatisticsController {
     @Value("${carservice.baseurl}")
     private String carServiceBaseUrl;
 
-    private static String http = "http://";
+    private static final String http = "http://";
 
     @GetMapping("/statistics/user/{userName}")
     public List<UserStatistics> getStatisticsByUserName(@PathVariable String userName){
-        List<UserStatistics> returnList= new ArrayList();
+        List<UserStatistics> returnList= new ArrayList<>();
         ResponseEntity<List<Scan>> responseEntityScans =
                 restTemplate.exchange(http + scanServiceBaseUrl + "/scans/user/{userName}",
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<Scan>>() {
@@ -73,7 +73,7 @@ public class UserStatisticsController {
 
     @GetMapping("/statistics/cars")
     public List<Car> getCarBrands(){
-        List<Car> cars = new ArrayList();
+        List<Car> cars = new ArrayList<>();
         ResponseEntity<List<Car>> responseEntityCars =
                 restTemplate.exchange(http + carServiceBaseUrl + "/cars",
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<Car>>() {}
