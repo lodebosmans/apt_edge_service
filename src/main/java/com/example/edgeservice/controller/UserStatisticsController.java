@@ -73,7 +73,6 @@ public class UserStatisticsController {
 
     @GetMapping("/statistics/cars")
     public List<Car> getCarBrands(){
-        List<Car> cars = new ArrayList<>();
         ResponseEntity<List<Car>> responseEntityCars =
                 restTemplate.exchange(http + carServiceBaseUrl + "/cars",
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<Car>>() {}
