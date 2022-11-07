@@ -166,7 +166,7 @@ The entire architecture and code was analyzed by Sonar Cloud. For all initially 
 
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Sonar.png?raw=true)
 
-However, we do keep one code smell in the edge serive. We deliberately chose to keep this smell for the sake of code readability. The smell suggests to replace a duplicate string that occurs four times. However, this duplicate code is a part of four API pathways. Replacing this with a fixed variable would impair the readability of the code.
+However, we do keep one code smell in the edge service. We deliberately chose to keep this smell for the sake of code readability. The smell suggests to replace a duplicate string that occurs four times. However, this duplicate code is a part of four API pathways. Replacing this with a fixed variable would impair the readability of the code.
 
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/SonarSmell.png?raw=true)
 
