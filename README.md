@@ -63,6 +63,12 @@ This DEL enpoint will demete an existing scan of {carBrand} by {userName}.
 
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Del.png?raw=true)
 
+## Swagger UI
+Below we will test all edge service endpoints with the Swagger UI. All endpoints are tested on the Okteto hosted environment. And guess what? You can try the all the requests yourself as well! Right click [this link](https://apt-edge-service-lodebosmans.cloud.okteto.net/swagger-ui.html#/user-statistics-controller) and open the Swagger UI in a new tab!
 
-# DTO niet vergeten
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/SwaggerUI.png?raw=true)
+
+
+## Specials
+### DTO niet vergeten
 # donatie toevoegen
