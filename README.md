@@ -1,6 +1,16 @@
 # Advanced Programming topics
 ## _"By far the greatest, most scalable and performant backend architecture in the history of Thomas More 4WT application development. Ever."_
 
+## Contents
+- [Introduction](#introduction)
+- [Diagram microservice architecture](#diagram-microservice-architecture)
+- [Postman](#postman)
+- [Swagger](#swagger)
+- [Code coverage](#code-coverage)
+- [SonarCloud](#sonar-cloud)
+
+
+## Introduction
 In this _fabulous_ project we developed a Java backend architecture to support a Flutter frontend application. The architecture includes:
 - Three microservices
   - Two dockerized Java backend microservices
@@ -18,6 +28,9 @@ In this _fabulous_ project we developed a Java backend architecture to support a
 - Okteto cloud hosting
 
 The backend microservices provide information about car properties (relation MySQL database) and scans of cars (MongoDB).
+
+## Diagram microservice architecture
+Nog te maken
 
 ## Links to the relevant github repositories
 - [Edge service](https://github.com/lodebosmans/apt_edge_service)
@@ -145,7 +158,15 @@ The image below provides a 100% coverage for all classes and methods in the cont
 
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/EdgeControllerUnitTesting.png?raw=true)
 
+## Sonar Cloud
+The entire architecture and code was analyzed by Sonar Cloud. For all initially signaled issues, we provided a fix or code refactoring. Proudly we can state that there are no bugs or vulnerabilites over the three entire microservices.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Sonar.png?raw=true)
+
+However, we do keep one code smell in the edge serive. We deliberately chose to keep this smell for the sake of code readability. The smell suggests to replace a duplicate string that occurs four times. However, this duplicate code is a part of four API pathways. Replacing this with a fixed variable would impair the readability of the code.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/SonarSmell.png?raw=true)
+
 ## Specials
 ### DTO niet vergeten
 # donatie toevoegen
-# diagram
