@@ -1,5 +1,6 @@
 # Advanced Programming topics
-## _"By far the greatest, most scalable and performant backend architecture in the history of Thomas More 4WT application development. Ever."_
+
+_"By far the greatest, most scalable and performant backend architecture in the history of Thomas More 4WT application development. Ever."_
 
 ## Contents
 - [Introduction](#introduction)
