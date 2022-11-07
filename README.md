@@ -1,5 +1,5 @@
 # Advanced Programming topics
-## _"By far the greatest, most scalable and performant backend architecture. Ever."_
+## _"By far the greatest, most scalable and performant backend architecture in the history of Thomas More 4WT application development. Ever."_
 
 In this _fabulous_ project we developed a Java backend architecture to support a Flutter frontend application. The architecture includes:
 - Three microservices
@@ -110,6 +110,42 @@ This DEL enpoint will demete an existing scan of {carBrand} by {userName}.
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Del_Swagger_A.png?raw=true)
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Del_Swagger_B.png?raw=true)
 
+## Code coverage
+In this section, we will provide code coverage of all microservice controllers and methods.
+
+### Car microservice (MySQL)
+#### Unit testing
+The image below provides a 100% coverage for all classes and methods in the controller, model and repository.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/CarControllerUnitTesting.png?raw=true)
+#### Integration testing
+The image below provides a 100% coverage for all classes and methods in the controller, model and repository.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/CarControllerIntegrationTesting.png?raw=true)
+
+We do notice on only 45% of the lines are covered for the CarController. This is linked to the PostConstruct method that is not fully used, as there is already a database available.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/CarControllerIntegrationTesting_Lines.png?raw=true)
+### Scan microservice (MongoDB)
+#### Unit testing
+The image below provides a 100% coverage for all classes and methods in the controller, model and repository.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/ScanControllerUnitTesting.png?raw=true)
+#### Integration testing
+The image below provides a 100% coverage for all classes and methods in the controller, model and repository.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/ScanControllerIntegrationTesting.png?raw=true)
+
+We do notice on only 82% of the lines are covered for the ScanController. This is linked to the PostConstruct method that is not fully used, as there is already a database available.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/ScanControllerIntegrationTesting_Lines.png?raw=true)
+### Edge microservice
+#### Unit testing
+The image below provides a 100% coverage for all classes and methods in the controller, model and repository.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/EdgeControllerUnitTesting.png?raw=true)
+
 ## Specials
 ### DTO niet vergeten
 # donatie toevoegen
+# diagram
