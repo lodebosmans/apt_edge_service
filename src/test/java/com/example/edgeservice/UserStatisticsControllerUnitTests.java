@@ -116,7 +116,6 @@ class UserStatisticsControllerUnitTests {
                 .andExpect(jsonPath("$[1].carBrand", is("Tesla")))
                 .andExpect(jsonPath("$[1].userScores[0].userName", is("Lode")))
                 .andExpect(jsonPath("$[1].userScores[0].scoreNumber", is(3)));
-
     }
 
     // Tweede test
