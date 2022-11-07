@@ -4,10 +4,12 @@
 ## Contents
 - [Introduction](#introduction)
 - [Diagram microservice architecture](#diagram-microservice-architecture)
+- [Relevant github repositories](#relevant-github-repositories)
 - [Postman](#postman)
-- [Swagger](#swagger)
+- [Swagger UI](#swagger-ui)
 - [Code coverage](#code-coverage)
 - [SonarCloud](#sonar-cloud)
+- [Specials](#specials)
 
 
 ## Introduction
@@ -32,7 +34,7 @@ The backend microservices provide information about car properties (relation MyS
 ## Diagram microservice architecture
 Nog te maken
 
-## Links to the relevant github repositories
+## Relevant github repositories
 - [Edge service](https://github.com/lodebosmans/apt_edge_service)
 - [Car service](https://github.com/lodebosmans/apt_car_service)
 - [Scan service](https://github.com/lodebosmans/apt_scan_service)
