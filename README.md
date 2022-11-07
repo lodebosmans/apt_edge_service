@@ -14,7 +14,7 @@ In this _fabulous_ project we developed a Java backend architecture to support a
       - One PUT endpoint
       - One DEL endpoint
 - Github Actions pipeline, including Jar artifact and dockerhub connection
-- ✨a lot of API magic ✨ 
+- ✨A lot of API magic ✨ 
 - Okteto cloud hosting
 
 The backend microservices provide information about car properties (relation MySQL database) and scans of cars (MongoDB).
@@ -54,7 +54,7 @@ This POST enpoint will post a new scan of {carBrand} by {userName} with a score 
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Post.png?raw=true)
 
 ### PUT /statistics?userName={userName}&carBrand={carBrand}&scoreNumber={scoreNumber}
-This PUT enpoint will update a existing scan of {carBrand} by {userName} with a new score of {scoreNumber}.
+This PUT enpoint will update an existing scan of {carBrand} by {userName} with a new score of {scoreNumber}.
 
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Put.png?raw=true)
 
@@ -64,10 +64,51 @@ This DEL enpoint will demete an existing scan of {carBrand} by {userName}.
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Del.png?raw=true)
 
 ## Swagger UI
-Below we will test all edge service endpoints with the Swagger UI. All endpoints are tested on the Okteto hosted environment. And guess what? You can try the all the requests yourself as well! Right click [this link](https://apt-edge-service-lodebosmans.cloud.okteto.net/swagger-ui.html#/user-statistics-controller) and open the Swagger UI in a new tab!
+Below we will test all edge service endpoints with the Swagger UI. All endpoints are tested on the Okteto hosted environment. And guess what? You can try the ALL the requests yourself as well (including the POST, PUT and DEL endpoints)! Right click [this link](https://apt-edge-service-lodebosmans.cloud.okteto.net/swagger-ui.html#/user-statistics-controller) and open the Swagger UI in a new tab!
 
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/SwaggerUI.png?raw=true)
 
+### GET /statistics/user/{userName}
+This GET enpoint will collect all scans performed by {userName}.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Get1_Swagger_A.png?raw=true)
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Get1_Swagger_B.png?raw=true)
+
+### GET /statistics/car/{carBrand}
+This GET enpoint will collect all scans taken of a specific {carBrand}.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Get2_Swagger_A.png?raw=true)
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Get2_Swagger_B.png?raw=true)
+
+### GET /statistics/{userName}/car/{carBrand}
+This GET enpoint will collect all scans taken of a specific {carBrand} performed by a specific {userName}.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Get3_Swagger_A.png?raw=true)
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Get3_Swagger_B.png?raw=true)
+
+### GET /statistics/cars
+This GET enpoint will collect all cars available in the relational database.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Get4_Swagger_A.png?raw=true)
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Get4_Swagger_B.png?raw=true)
+
+### POST /statistics?userName={userName}&carBrand={carBrand}&scoreNumber={scoreNumber}
+This POST enpoint will post a new scan of {carBrand} by {userName} with a score of {scoreNumber}.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Post_Swagger_A.png?raw=true)
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Post_Swagger_B.png?raw=true)
+
+### PUT /statistics?userName={userName}&carBrand={carBrand}&scoreNumber={scoreNumber}
+This PUT enpoint will update an existing scan of {carBrand} by {userName} with a new score of {scoreNumber}.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Put_Swagger_A.png?raw=true)
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Put_Swagger_B.png?raw=true)
+
+### DEL /statistics/{userName}/car/{carBrand}
+This DEL enpoint will demete an existing scan of {carBrand} by {userName}.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Del_Swagger_A.png?raw=true)
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Del_Swagger_B.png?raw=true)
 
 ## Specials
 ### DTO niet vergeten
