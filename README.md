@@ -173,5 +173,13 @@ However, we do keep one code smell in the edge service. We deliberately chose to
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/SonarSmell.png?raw=true)
 
 ## Specials
-### DTO niet vergeten
+### Data Transfer Object (DTO)
+In our project, we included two Data Transfer Objects to protect the application against malicious injections. For all POST and PUT mappings, the DTO was implemented. Below you can see an example of the ScanDTO object class, which resembles the Scan class.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/ScanDTO.png?raw=true)
+
+In the POST method, this ScanDTO object is received by the addScan function. Within this function, the information is collected from the ScanDTO object and injected in an object from the Scan class. Finally, the Scan object is stored.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/ScanDTO_Post.png?raw=true)
+
 # donatie toevoegen
