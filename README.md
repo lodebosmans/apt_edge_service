@@ -10,6 +10,8 @@ _"By far the greatest, most scalable and performant backend architecture in the 
 - [Swagger UI](#swagger-ui)
 - [Code coverage](#code-coverage)
 - [SonarCloud](#sonar-cloud)
+- [Docker Hub](#docker-hub)
+- [Okteto cloud hosting](#okteto-cloud-hosting)
 - [Specials](#specials)
 
 
@@ -171,6 +173,10 @@ The entire architecture and code was analyzed by Sonar Cloud. For all initially 
 However, we do keep one code smell in the edge service. We deliberately chose to keep this smell for the sake of code readability. The smell suggests to replace a duplicate string that occurs four times. However, this duplicate code is a part of four API pathways. Replacing this with a fixed variable would impair the readability of the code.
 
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/SonarSmell.png?raw=true)
+
+## Docker Hub
+
+## Okteto cloud hosting
 
 ## Specials
 ### Data Transfer Object (DTO)
