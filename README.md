@@ -174,7 +174,7 @@ However, we do keep one code smell in the edge service. We deliberately chose to
 
 ## Specials
 ### Data Transfer Object (DTO)
-In our project, we included two Data Transfer Objects to protect the application against malicious injections. For all POST and PUT mappings, the DTO was implemented. Below you can see an example of the ScanDTO object class, which resembles the Scan class.
+In our project, we included a Data Transfer Objects into two functions to protect the application against malicious injections. For all POST and PUT mappings, the DTO was implemented. Below you can see an example of the ScanDTO object class, which resembles the Scan class.
 
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/ScanDTO.png?raw=true)
 
