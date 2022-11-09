@@ -33,7 +33,8 @@ In this _fabulous_ project we developed a Java backend architecture to support a
 The backend microservices provide information about car properties (relation MySQL database) and scans of cars (MongoDB).
 
 ## Diagram microservice architecture
-Nog te maken
+Out backend applications has to following architecture.
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/BackEndArchitecture.drawio.png?raw=true)
 
 ## Relevant github repositories
 - [Edge service](https://github.com/lodebosmans/apt_edge_service)
