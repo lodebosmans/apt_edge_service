@@ -34,6 +34,7 @@ The backend microservices provide information about car properties (relation MyS
 
 ## Diagram microservice architecture
 Out backend applications has to following architecture.
+
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/BackEndArchitecture.drawio.png?raw=true)
 
 ## Relevant github repositories
