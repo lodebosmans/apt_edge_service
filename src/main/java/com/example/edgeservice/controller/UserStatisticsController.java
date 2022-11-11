@@ -83,13 +83,25 @@ public class UserStatisticsController {
 
     @PostMapping("/statistics")
     public UserStatistics addStatistics(@RequestParam String userName, @RequestParam String carBrand, @RequestParam Integer scoreNumber){
-        Scan scan =
-                restTemplate.postForObject(http + scanServiceBaseUrl + "/scans",
-                        new Scan(userName,carBrand,scoreNumber),Scan.class);
-        Car car =
-                restTemplate.getForObject(http + carServiceBaseUrl + "/cars/{carBrand}",
-                        Car.class,carBrand);
-        return new UserStatistics(car, scan);
+        // First check if a scan for this combination already exists, if so redirect to PUT command instead of performing the POST
+        Scan scanTemp =
+                restTemplate.getForObject(http + scanServiceBaseUrl + "/scans/user/{userName}/car/{carBrand}",
+                        Scan.class, userName, carBrand);
+        if (scanTemp != null) {
+            // The scan combination already exists
+            // Redirect to the PUT method and get the UserStatistics object back
+            UserStatistics updatedUserStatistics = updateStatistics(userName, carBrand, scoreNumber);
+            return updatedUserStatistics;
+        } else {
+            // The combination does not exist yet, so POST that combination.
+            Scan scan =
+                    restTemplate.postForObject(http + scanServiceBaseUrl + "/scans",
+                            new Scan(userName, carBrand, scoreNumber), Scan.class);
+            Car car =
+                    restTemplate.getForObject(http + carServiceBaseUrl + "/cars/{carBrand}",
+                            Car.class, carBrand);
+            return new UserStatistics(car, scan);
+        }
     }
 
     @PutMapping("/statistics")
@@ -98,8 +110,10 @@ public class UserStatisticsController {
                 restTemplate.getForObject(http + scanServiceBaseUrl + "/scans/user/{userName}/car/{carBrand}",
                         Scan.class, userName, carBrand);
         if (scan == null) {
-            // Return an empty object
-            return new UserStatistics();
+            // The scan does not exist yet.
+            // Redirect to the POST method
+            UserStatistics postedUserStatistics = addStatistics(userName, carBrand, scoreNumber);
+            return postedUserStatistics;
         } else {
             scan.setScoreNumber(scoreNumber);
             ResponseEntity<Scan> responseEntityReview =

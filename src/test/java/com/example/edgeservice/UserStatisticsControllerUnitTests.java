@@ -56,6 +56,7 @@ class UserStatisticsControllerUnitTests {
 
     private Car car1 = new Car("Audi",200,5);
     private Car car2 = new Car("Tesla",150,1);
+    private Car car3 = new Car("Ferarri",300,2);
     private List<Car> allCars = Arrays.asList(car1, car2);
 
     private Scan scanUser1Car1 = new Scan("Lode", "Audi", 5);
@@ -188,7 +189,7 @@ class UserStatisticsControllerUnitTests {
     @Test
     void whenGetAllCars_thenReturnAllCarsJson() throws Exception {
 
-        // GET Car 1 info
+        // GET all cars info
         mockServer.expect(ExpectedCount.once(),
                         requestTo(new URI("http://" + carServiceBaseUrl + "/cars")))
                 .andExpect(method(HttpMethod.GET))
@@ -212,11 +213,20 @@ class UserStatisticsControllerUnitTests {
 
 
 
-    // Vijfde test
+    // Vijfde test A: POST echte nieuwe scan = POST
     @Test
-    void whenPostStatitics_thenReturnStatisticsJson() throws Exception {
+    void whenPostStatitics_thenReturnPostedStatisticsJson() throws Exception {
 
         Scan scanUser3Car1 = new Scan("Els", "Audi", 2);
+
+        // GET scan for Car 1 from User 3
+        mockServer.expect(ExpectedCount.once(),
+                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/Els/car/Audi")))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withStatus(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(mapper.writeValueAsString(null))
+                );
 
         // POST scan for Car 1 from User 3
         mockServer.expect(ExpectedCount.once(),
@@ -246,13 +256,56 @@ class UserStatisticsControllerUnitTests {
                 .andExpect(jsonPath("$.carBrand", is("Audi")))
                 .andExpect(jsonPath("$.userScores[0].userName", is("Els")))
                 .andExpect(jsonPath("$.userScores[0].scoreNumber", is(2)));
+    }
 
+    // Vijfde test B: POST bestaande scan => redirect naar PUT
+    @Test
+    void whenPostStatitics_thenReturnUpdatedStatisticsJson() throws Exception {
+
+        Scan scanUser1Car1bis = new Scan("Lode", "Audi", 7);
+
+        // GET scan for Car 1 from User 3
+        mockServer.expect(ExpectedCount.twice(),
+                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/Lode/car/Audi")))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withStatus(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(mapper.writeValueAsString(scanUser1Car1))
+                );
+
+        // PUT scan from User 1 for Car 1 with new score 1
+        mockServer.expect(ExpectedCount.once(),
+                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans")))
+                .andExpect(method(HttpMethod.PUT))
+                .andRespond(withStatus(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(mapper.writeValueAsString(scanUser1Car1bis))
+                );
+
+        // GET Car 1 info
+        mockServer.expect(ExpectedCount.once(),
+                        requestTo(new URI("http://" + carServiceBaseUrl + "/cars/Audi")))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withStatus(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(mapper.writeValueAsString(car1))
+                );
+
+        mockMvc.perform(post("/statistics")
+                .param("userName", scanUser1Car1bis.getUserName())
+                .param("carBrand", scanUser1Car1bis.getCarBrand())
+                .param("scoreNumber", scanUser1Car1bis.getScoreNumber().toString())
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.carBrand", is("Audi")))
+                .andExpect(jsonPath("$.userScores[0].userName", is("Lode")))
+                .andExpect(jsonPath("$.userScores[0].scoreNumber", is(7)));
     }
 
 
-    // Zesde test
+    // Zesde test A: PUT bestaande scan
     @Test
-    void whenUpdateStatistics_thenReturnStatistiscsJson() throws Exception {
+    void whenUpdateStatistics_thenReturnUpdatedStatistiscsJson() throws Exception {
 
         Scan updatedScanUser1Car1 = new Scan("Lode", "Audi", 1);
 
@@ -296,33 +349,49 @@ class UserStatisticsControllerUnitTests {
     }
 
 
-    // Zesde test BIS with empty put
+    // Zesde test B: PUT van nog niet bestaande scan => redirect naar POST
     @Test
-    void whenUpdateStatisticsOfNonExisting_thenReturnEmptyStatistiscsJson() throws Exception {
+    void whenUpdateStatisticsOfNonExisting_thenReturnPostedStatistiscsJson() throws Exception {
 
-        Scan updatedScanUser1Car1 = new Scan("Lode", "Volvo", 1);
-
-//        Scan emptyScan = new Scan();
-        UserStatistics emptyUserStatistics = new UserStatistics();
+        Scan newScanUser1Car5 = new Scan("Lode", "Ferarri", 1);
 
         // GET scan from User 1 of Car 1
-        mockServer.expect(ExpectedCount.once(),
-                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/Lode/car/Volvo")))
+        mockServer.expect(ExpectedCount.twice(),
+                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/Lode/car/Ferarri")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(mapper.writeValueAsString(null))
                 );
 
-        mockMvc.perform(put("/statistics")
-                        .param("userName", updatedScanUser1Car1.getUserName())
-                        .param("carBrand", updatedScanUser1Car1.getCarBrand())
-                        .param("scoreNumber", updatedScanUser1Car1.getScoreNumber().toString())
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.carBrand").value(IsNull.nullValue()))
-                .andExpect(jsonPath("$.userScores").value(IsNull.nullValue()));
+        // POST scan for Car 1 from User 3
+        mockServer.expect(ExpectedCount.once(),
+                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans")))
+                .andExpect(method(HttpMethod.POST))
+                .andRespond(withStatus(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(mapper.writeValueAsString(newScanUser1Car5))
+                );
 
+        // GET Car 1 info
+        mockServer.expect(ExpectedCount.once(),
+                        requestTo(new URI("http://" + carServiceBaseUrl + "/cars/Ferarri")))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withStatus(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(mapper.writeValueAsString(car3))
+                );
+
+        mockMvc.perform(put("/statistics")
+                .param("userName", newScanUser1Car5.getUserName())
+                .param("carBrand", newScanUser1Car5.getCarBrand())
+                .param("scoreNumber", newScanUser1Car5.getScoreNumber().toString())
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.carBrand", is("Ferarri")))
+                .andExpect(jsonPath("$.userScores[0].userName", is("Lode")))
+                .andExpect(jsonPath("$.userScores[0].scoreNumber", is(1)));
     }
 
     // Zevende test
