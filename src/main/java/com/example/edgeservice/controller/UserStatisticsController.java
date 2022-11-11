@@ -90,8 +90,7 @@ public class UserStatisticsController {
         if (scanTemp != null) {
             // The scan combination already exists
             // Redirect to the PUT method and get the UserStatistics object back
-            UserStatistics updatedUserStatistics = updateStatistics(userName, carBrand, scoreNumber);
-            return updatedUserStatistics;
+            return updateStatistics(userName, carBrand, scoreNumber);
         } else {
             // The combination does not exist yet, so POST that combination.
             Scan scan =
@@ -112,8 +111,7 @@ public class UserStatisticsController {
         if (scan == null) {
             // The scan does not exist yet.
             // Redirect to the POST method
-            UserStatistics postedUserStatistics = addStatistics(userName, carBrand, scoreNumber);
-            return postedUserStatistics;
+            return addStatistics(userName, carBrand, scoreNumber);
         } else {
             scan.setScoreNumber(scoreNumber);
             ResponseEntity<Scan> responseEntityReview =
