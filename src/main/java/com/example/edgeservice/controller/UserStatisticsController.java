@@ -36,7 +36,7 @@ public class UserStatisticsController {
         ResponseEntity<List<Scan>> responseEntityScans =
                 restTemplate.exchange(http + scanServiceBaseUrl + "/scans/user/{userName}",
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<Scan>>() {
-                        }, userName.toUpperCase());
+                        }, userName.toLowerCase());
         List<Scan> scans = responseEntityScans.getBody();
         for (Scan scan:
                 scans) {
@@ -67,7 +67,7 @@ public class UserStatisticsController {
                         Car.class, carBrand);
         Scan scan =
                 restTemplate.getForObject(http + scanServiceBaseUrl + "/scans/user/{userName}/car/{carBrand}",
-                        Scan.class, userName.toUpperCase(), carBrand);
+                        Scan.class, userName.toLowerCase(), carBrand);
         return new UserStatistics(car, scan);
     }
 
@@ -86,7 +86,7 @@ public class UserStatisticsController {
         // First check if a scan for this combination already exists, if so redirect to PUT command instead of performing the POST
         Scan scanTemp =
                 restTemplate.getForObject(http + scanServiceBaseUrl + "/scans/user/{userName}/car/{carBrand}",
-                        Scan.class, userName.toUpperCase(), carBrand);
+                        Scan.class, userName.toLowerCase(), carBrand);
         if (scanTemp != null) {
             // The scan combination already exists
             // Redirect to the PUT method and get the UserStatistics object back
@@ -107,7 +107,7 @@ public class UserStatisticsController {
     public UserStatistics updateStatistics(@RequestParam String userName, @RequestParam String carBrand, @RequestParam Integer scoreNumber){
         Scan scan =
                 restTemplate.getForObject(http + scanServiceBaseUrl + "/scans/user/{userName}/car/{carBrand}",
-                        Scan.class, userName.toUpperCase(), carBrand);
+                        Scan.class, userName.toLowerCase(), carBrand);
         if (scan == null) {
             // The scan does not exist yet.
             // Redirect to the POST method
@@ -128,7 +128,7 @@ public class UserStatisticsController {
     @DeleteMapping("/statistics/{userName}/car/{carBrand}")
     public <T> ResponseEntity<T> deleteStatistics(@PathVariable String userName, @PathVariable String carBrand){
 
-        restTemplate.delete(http + scanServiceBaseUrl + "/scans/user/{userName}/car/{CarBrand}", userName.toUpperCase(), carBrand);
+        restTemplate.delete(http + scanServiceBaseUrl + "/scans/user/{userName}/car/{CarBrand}", userName.toLowerCase(), carBrand);
 
         return ResponseEntity.ok().build();
     }

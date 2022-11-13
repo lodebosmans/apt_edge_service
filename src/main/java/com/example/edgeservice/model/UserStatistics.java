@@ -30,7 +30,7 @@ public class UserStatistics {
     }
 
     public void setCarBrand(String carBrand) {
-        this.carBrand = carBrand;
+        this.carBrand = carBrand.toLowerCase();
     }
 
     public List<UserScore> getUserScores() {

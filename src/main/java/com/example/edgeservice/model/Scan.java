@@ -10,8 +10,8 @@ public class Scan {
     }
 
     public Scan(String userName, String carBrand, Integer scoreNumber) {
-        this.userName = userName;
-        this.carBrand = carBrand;
+        this.userName = userName.toLowerCase();
+        this.carBrand = carBrand.toLowerCase();
         this.scoreNumber = scoreNumber;
     }
 
@@ -20,7 +20,7 @@ public class Scan {
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.userName = userName.toLowerCase();
     }
 
     public String getCarBrand() {
@@ -28,7 +28,7 @@ public class Scan {
     }
 
     public void setCarBrand(String carBrand) {
-        this.carBrand = carBrand;
+        this.carBrand = carBrand.toLowerCase();
     }
 
     public Integer getScoreNumber() {

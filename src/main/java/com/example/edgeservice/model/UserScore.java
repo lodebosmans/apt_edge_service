@@ -5,7 +5,7 @@ public class UserScore {
     private Integer scoreNumber;
 
     public UserScore(String userName, Integer scoreNumber) {
-        this.userName = userName;
+        this.userName = userName.toLowerCase();
         this.scoreNumber = scoreNumber;
     }
 

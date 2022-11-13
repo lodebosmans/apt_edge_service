@@ -12,7 +12,7 @@ public class Car {
     }
 
     public Car(String carBrand, Integer maxSpeed, Integer numberOfSeats) {
-        this.carBrand = carBrand;
+        this.carBrand = carBrand.toLowerCase();
         this.maxSpeed = maxSpeed;
         this.numberOfSeats = numberOfSeats;
     }
@@ -22,7 +22,7 @@ public class Car {
     }
 
     public void setCarBrand(String carBrand) {
-        this.carBrand = carBrand;
+        this.carBrand = carBrand.toLowerCase();
     }
 
     public Integer getMaxSpeed() {

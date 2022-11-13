@@ -82,7 +82,7 @@ class UserStatisticsControllerUnitTests {
 
         // GET all scans from User 1
         mockServer.expect(ExpectedCount.once(),
-                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/Lode")))
+                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/lode")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -91,7 +91,7 @@ class UserStatisticsControllerUnitTests {
 
         // GET Car 1 info
         mockServer.expect(ExpectedCount.once(),
-                        requestTo(new URI("http://" + carServiceBaseUrl + "/cars/Audi")))
+                        requestTo(new URI("http://" + carServiceBaseUrl + "/cars/audi")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -100,22 +100,22 @@ class UserStatisticsControllerUnitTests {
 
         // GET Car 2 info
         mockServer.expect(ExpectedCount.once(),
-                        requestTo(new URI("http://" + carServiceBaseUrl + "/cars/Tesla")))
+                        requestTo(new URI("http://" + carServiceBaseUrl + "/cars/tesla")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(mapper.writeValueAsString(car2))
                 );
 
-        mockMvc.perform(get("/statistics/user/{userName}", "Lode"))
+        mockMvc.perform(get("/statistics/user/{userName}", "lode"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].carBrand", is("Audi")))
-                .andExpect(jsonPath("$[0].userScores[0].userName", is("Lode")))
+                .andExpect(jsonPath("$[0].carBrand", is("audi")))
+                .andExpect(jsonPath("$[0].userScores[0].userName", is("lode")))
                 .andExpect(jsonPath("$[0].userScores[0].scoreNumber", is(5)))
-                .andExpect(jsonPath("$[1].carBrand", is("Tesla")))
-                .andExpect(jsonPath("$[1].userScores[0].userName", is("Lode")))
+                .andExpect(jsonPath("$[1].carBrand", is("tesla")))
+                .andExpect(jsonPath("$[1].userScores[0].userName", is("lode")))
                 .andExpect(jsonPath("$[1].userScores[0].scoreNumber", is(3)));
     }
 
@@ -125,7 +125,7 @@ class UserStatisticsControllerUnitTests {
 
         // GET Car 1 info
         mockServer.expect(ExpectedCount.once(),
-                requestTo(new URI("http://" + carServiceBaseUrl + "/cars/Audi")))
+                requestTo(new URI("http://" + carServiceBaseUrl + "/cars/audi")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -134,20 +134,20 @@ class UserStatisticsControllerUnitTests {
 
         // GET all scans for Car 1
         mockServer.expect(ExpectedCount.once(),
-                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/Audi")))
+                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/audi")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(mapper.writeValueAsString(allScansForCar1))
                 );
 
-        mockMvc.perform(get("/statistics/car/{carBrand}", "Audi"))
+        mockMvc.perform(get("/statistics/car/{carBrand}", "audi"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.carBrand", is("Audi")))
-                .andExpect(jsonPath("$.userScores[0].userName", is("Lode")))
+                .andExpect(jsonPath("$.carBrand", is("audi")))
+                .andExpect(jsonPath("$.userScores[0].userName", is("lode")))
                 .andExpect(jsonPath("$.userScores[0].scoreNumber", is(5)))
-                .andExpect(jsonPath("$.userScores[1].userName", is("Johnny")))
+                .andExpect(jsonPath("$.userScores[1].userName", is("johnny")))
                 .andExpect(jsonPath("$.userScores[1].scoreNumber", is(4)));
 
     }
@@ -159,7 +159,7 @@ class UserStatisticsControllerUnitTests {
 
         // GET Car 1 info
         mockServer.expect(ExpectedCount.once(),
-                        requestTo(new URI("http://" + carServiceBaseUrl + "/cars/Audi")))
+                        requestTo(new URI("http://" + carServiceBaseUrl + "/cars/audi")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -168,18 +168,18 @@ class UserStatisticsControllerUnitTests {
 
         // GET Car 1 info
         mockServer.expect(ExpectedCount.once(),
-                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/Lode/car/Audi")))
+                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/lode/car/audi")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(mapper.writeValueAsString(scanUser1Car1))
                 );
 
-        mockMvc.perform(get("/statistics/{userName}/car/{carBrand}","Lode", "Audi"))
+        mockMvc.perform(get("/statistics/{userName}/car/{carBrand}","lode", "audi"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.carBrand", is("Audi")))
-                .andExpect(jsonPath("$.userScores[0].userName", is("Lode")))
+                .andExpect(jsonPath("$.carBrand", is("audi")))
+                .andExpect(jsonPath("$.userScores[0].userName", is("lode")))
                 .andExpect(jsonPath("$.userScores[0].scoreNumber", is(5)));
 
     }
@@ -202,10 +202,10 @@ class UserStatisticsControllerUnitTests {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].carBrand", is("Audi")))
+                .andExpect(jsonPath("$[0].carBrand", is("audi")))
                 .andExpect(jsonPath("$[0].maxSpeed", is(200)))
                 .andExpect(jsonPath("$[0].numberOfSeats", is(5)))
-                .andExpect(jsonPath("$[1].carBrand", is("Tesla")))
+                .andExpect(jsonPath("$[1].carBrand", is("tesla")))
                 .andExpect(jsonPath("$[1].maxSpeed", is(150)))
                 .andExpect(jsonPath("$[1].numberOfSeats", is(1)));
 
@@ -221,7 +221,7 @@ class UserStatisticsControllerUnitTests {
 
         // GET scan for Car 1 from User 3
         mockServer.expect(ExpectedCount.once(),
-                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/Els/car/Audi")))
+                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/els/car/audi")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -239,7 +239,7 @@ class UserStatisticsControllerUnitTests {
 
         // GET Car 1 info
         mockServer.expect(ExpectedCount.once(),
-                        requestTo(new URI("http://" + carServiceBaseUrl + "/cars/Audi")))
+                        requestTo(new URI("http://" + carServiceBaseUrl + "/cars/audi")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -253,8 +253,8 @@ class UserStatisticsControllerUnitTests {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.carBrand", is("Audi")))
-                .andExpect(jsonPath("$.userScores[0].userName", is("Els")))
+                .andExpect(jsonPath("$.carBrand", is("audi")))
+                .andExpect(jsonPath("$.userScores[0].userName", is("els")))
                 .andExpect(jsonPath("$.userScores[0].scoreNumber", is(2)));
     }
 
@@ -266,7 +266,7 @@ class UserStatisticsControllerUnitTests {
 
         // GET scan for Car 1 from User 3
         mockServer.expect(ExpectedCount.twice(),
-                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/Lode/car/Audi")))
+                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/lode/car/audi")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -284,7 +284,7 @@ class UserStatisticsControllerUnitTests {
 
         // GET Car 1 info
         mockServer.expect(ExpectedCount.once(),
-                        requestTo(new URI("http://" + carServiceBaseUrl + "/cars/Audi")))
+                        requestTo(new URI("http://" + carServiceBaseUrl + "/cars/audi")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -297,8 +297,8 @@ class UserStatisticsControllerUnitTests {
                 .param("scoreNumber", scanUser1Car1bis.getScoreNumber().toString())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.carBrand", is("Audi")))
-                .andExpect(jsonPath("$.userScores[0].userName", is("Lode")))
+                .andExpect(jsonPath("$.carBrand", is("audi")))
+                .andExpect(jsonPath("$.userScores[0].userName", is("lode")))
                 .andExpect(jsonPath("$.userScores[0].scoreNumber", is(7)));
     }
 
@@ -311,7 +311,7 @@ class UserStatisticsControllerUnitTests {
 
         // GET scan from User 1 of Car 1
         mockServer.expect(ExpectedCount.once(),
-                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/Lode/car/Audi")))
+                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/lode/car/audi")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -329,7 +329,7 @@ class UserStatisticsControllerUnitTests {
 
         // GET Car 1 info
         mockServer.expect(ExpectedCount.once(),
-                        requestTo(new URI("http://" + carServiceBaseUrl + "/cars/Audi")))
+                        requestTo(new URI("http://" + carServiceBaseUrl + "/cars/audi")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -342,8 +342,8 @@ class UserStatisticsControllerUnitTests {
                 .param("scoreNumber", updatedScanUser1Car1.getScoreNumber().toString())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.carBrand", is("Audi")))
-                .andExpect(jsonPath("$.userScores[0].userName", is("Lode")))
+                .andExpect(jsonPath("$.carBrand", is("audi")))
+                .andExpect(jsonPath("$.userScores[0].userName", is("lode")))
                 .andExpect(jsonPath("$.userScores[0].scoreNumber", is(1)));
 
     }
@@ -357,7 +357,7 @@ class UserStatisticsControllerUnitTests {
 
         // GET scan from User 1 of Car 1
         mockServer.expect(ExpectedCount.twice(),
-                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/Lode/car/Ferarri")))
+                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/lode/car/ferarri")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -375,7 +375,7 @@ class UserStatisticsControllerUnitTests {
 
         // GET Car 1 info
         mockServer.expect(ExpectedCount.once(),
-                        requestTo(new URI("http://" + carServiceBaseUrl + "/cars/Ferarri")))
+                        requestTo(new URI("http://" + carServiceBaseUrl + "/cars/ferarri")))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withStatus(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -389,8 +389,8 @@ class UserStatisticsControllerUnitTests {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.carBrand", is("Ferarri")))
-                .andExpect(jsonPath("$.userScores[0].userName", is("Lode")))
+                .andExpect(jsonPath("$.carBrand", is("ferarri")))
+                .andExpect(jsonPath("$.userScores[0].userName", is("lode")))
                 .andExpect(jsonPath("$.userScores[0].scoreNumber", is(1)));
     }
 
@@ -400,12 +400,12 @@ class UserStatisticsControllerUnitTests {
 
         // DELETE scan from User 999 of Car with ISBN9 as ISBN
         mockServer.expect(ExpectedCount.once(),
-                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/Lode/car/Volvo")))
+                        requestTo(new URI("http://" + scanServiceBaseUrl + "/scans/user/lode/car/volvo")))
                 .andExpect(method(HttpMethod.DELETE))
                 .andRespond(withStatus(HttpStatus.OK)
                 );
 
-        mockMvc.perform(delete("/statistics/{userName}/car/{carBrand}", "Lode", "Volvo"))
+        mockMvc.perform(delete("/statistics/{userName}/car/{carBrand}", "lode", "volvo"))
                 .andExpect(status().isOk());
     }
 
