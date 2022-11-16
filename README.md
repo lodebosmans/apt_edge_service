@@ -208,3 +208,5 @@ In the POST method, this ScanDTO object is received by the addScan function. Wit
 This project enabled us to setup a full backend architecture that is up to date with the current state of the art technologies.
 
 If you have enjoyed this repository, don't forget to like and subscribe!
+
+#wearemore
