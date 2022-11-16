@@ -204,4 +204,7 @@ In the POST method, this ScanDTO object is received by the addScan function. Wit
 
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/ScanDTO_Post.png?raw=true)
 
-# donatie toevoegen
+# Final word
+This project enabled us to setup a full backend architecture that is up to date with the current state of the art technologies.
+
+If you have enjoyed this repository, don't forget to like and subscribe!
