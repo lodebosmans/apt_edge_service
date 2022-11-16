@@ -209,4 +209,4 @@ This project enabled us to setup a full backend architecture that is up to date 
 
 If you have enjoyed this repository, don't forget to like and subscribe!
 
-#wearemore
+#thomasmore #wearemore
