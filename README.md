@@ -6,6 +6,7 @@ _"By far the greatest, most scalable and performant backend architecture in the 
 - [Introduction](#introduction)
 - [Diagram microservice architecture](#diagram-microservice-architecture)
 - [Relevant github repositories](#relevant-github-repositories)
+- [CI/CD pipeline](#ci/cd pipeline)
 - [Postman](#postman)
 - [Swagger UI](#swagger-ui)
 - [Code coverage](#code-coverage)
@@ -45,6 +46,33 @@ Our backend applications has the following architecture.
 - [Car service](https://github.com/lodebosmans/apt_car_service)
 - [Scan service](https://github.com/lodebosmans/apt_scan_service)
 - [Docker compose](https://github.com/lodebosmans/apt_docker_compose)
+
+## CI/CD pipeline
+
+### GitHub workflow
+All code and version control is handled by GitHub. A GitHub workflow is defined including the code submission to Sonar Cloud and Docker Hub. Finally, the creation of a JAR artifact file is included as well.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/GitHubActions.png?raw=true)
+
+### Sonar Cloud
+The entire architecture and code was analyzed by Sonar Cloud. For all initially signaled issues, we provided a fix or code refactoring. Proudly we can state that there are no bugs or vulnerabilites over the three entire microservices.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Sonar.png?raw=true)
+
+However, we do keep two code smells in the edge service. We deliberately chose to keep these smells for the sake of code readability. The smells suggests to replace a duplicate string that occurs multiple times. However, this duplicate code is a part of our API pathways. Replacing this with a fixed variable would impair the readability of the code and the endpoint pathway. Therefore, we opted to keep this as is.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/SonarSmell.png?raw=true)
+
+### Docker Hub
+The application is dockerized into containers that are hosted on Docker Hub.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/DockerHub.png?raw=true)
+
+###" Okteto cloud hosting
+
+The dockerized containers are finally deployed on Okteto cloud, providing the final API endpoints.
+
+![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Okteto.png?raw=true)
 
 ## Postman 
 Below we will test all edge service endpoints with Postman. All endpoints are tested on the Okteto hosted environment. And guess what? You can try the GET requests yourself as well!
@@ -165,21 +193,6 @@ We do notice on only 82% of the lines are covered for the ScanController. This i
 The image below provides a 100% coverage for all classes and methods in the controller, model and repository.
 
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/EdgeControllerUnitTesting.png?raw=true)
-
-## Sonar Cloud
-The entire architecture and code was analyzed by Sonar Cloud. For all initially signaled issues, we provided a fix or code refactoring. Proudly we can state that there are no bugs or vulnerabilites over the three entire microservices.
-
-![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Sonar.png?raw=true)
-
-However, we do keep one code smell in the edge service. We deliberately chose to keep this smell for the sake of code readability. The smell suggests to replace a duplicate string that occurs four times. However, this duplicate code is a part of four API pathways. Replacing this with a fixed variable would impair the readability of the code.
-
-![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/SonarSmell.png?raw=true)
-
-## GitHub Actions
-
-## Docker Hub
-
-## Okteto cloud hosting
 
 ## Specials
 ### Data Transfer Object (DTO)
