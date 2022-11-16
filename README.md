@@ -6,7 +6,7 @@ _"By far the greatest, most scalable and performant backend architecture in the 
 - [Introduction](#introduction)
 - [Diagram microservice architecture](#diagram-microservice-architecture)
 - [Relevant github repositories](#relevant-github-repositories)
-- [CI/CD pipeline](#ci/cd pipeline)
+- [CI-CD pipeline](#ci-cd pipeline)
 - [Postman](#postman)
 - [Swagger UI](#swagger-ui)
 - [Code coverage](#code-coverage)
@@ -47,7 +47,7 @@ Our backend applications has the following architecture.
 - [Scan service](https://github.com/lodebosmans/apt_scan_service)
 - [Docker compose](https://github.com/lodebosmans/apt_docker_compose)
 
-## CI/CD pipeline
+## CI-CD pipeline
 
 ### GitHub workflow
 All code and version control is handled by GitHub. A GitHub workflow is defined including the code submission to Sonar Cloud and Docker Hub. Finally, the creation of a JAR artifact file is included as well.
@@ -68,7 +68,7 @@ The application is dockerized into containers that are hosted on Docker Hub.
 
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/DockerHub.png?raw=true)
 
-###" Okteto cloud hosting
+### Okteto cloud hosting
 
 The dockerized containers are finally deployed on Okteto cloud, providing the final API endpoints.
 
