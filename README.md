@@ -50,17 +50,17 @@ Our backend applications has the following architecture.
 Below we will test all edge service endpoints with Postman. All endpoints are tested on the Okteto hosted environment. And guess what? You can try the GET requests yourself as well!
 
 ### GET /statistics/user/{userName}
-This GET enpoint will collect all scans performed by {userName}.Try it out yourself by right clicking [this link](https://apt-edge-service-lodebosmans.cloud.okteto.net/statistics/user/Lode) and opening it in a new tab!
+This GET enpoint will collect all scans performed by {userName}.Try it out yourself by right clicking [this link](https://apt-edge-service-lodebosmans.cloud.okteto.net/statistics/user/lode) and opening it in a new tab!
 
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Get1.png?raw=true)
 
 ### GET /statistics/car/{carBrand}
-This GET enpoint will collect all scans taken of a specific {carBrand}.Try it out yourself by right clicking [this link](https://apt-edge-service-lodebosmans.cloud.okteto.net/statistics/car/Traktor) and opening it in a new tab!
+This GET enpoint will collect all scans taken of a specific {carBrand}.Try it out yourself by right clicking [this link](https://apt-edge-service-lodebosmans.cloud.okteto.net/statistics/car/traktor) and opening it in a new tab!
 
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Get2.png?raw=true)
 
 ### GET /statistics/{userName}/car/{carBrand}
-This GET enpoint will collect all scans taken of a specific {carBrand} performed by a specific {userName}.Try it out yourself by right clicking [this link](https://apt-edge-service-lodebosmans.cloud.okteto.net/statistics/Lode/car/Traktor) and opening it in a new tab!
+This GET enpoint will collect all scans taken of a specific {carBrand} performed by a specific {userName}.Try it out yourself by right clicking [this link](https://apt-edge-service-lodebosmans.cloud.okteto.net/statistics/lode/car/traktor) and opening it in a new tab!
 
 ![alt text](https://github.com/lodebosmans/apt_edge_service/blob/main/img/Get3.png?raw=true)
 
