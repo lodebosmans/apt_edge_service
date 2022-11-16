@@ -47,7 +47,7 @@ Our backend applications has the following architecture.
 - [Scan service](https://github.com/lodebosmans/apt_scan_service)
 - [Docker compose](https://github.com/lodebosmans/apt_docker_compose)
 
-## CI CD pipeline
+## CI/CD pipeline
 
 ### GitHub workflow
 All code and version control is handled by GitHub. A GitHub workflow is defined including the code submission to Sonar Cloud and Docker Hub. Finally, the creation of a JAR artifact file is included as well.
